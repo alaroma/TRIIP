@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:padding="10dp" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:text="Главный экран"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="5"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:text=" На экране отображается карта с уже существующими метками, информацию о которых можно просмотреть, нажав на одну из них. Главный экран содержит строку для ввода местоположения и две основные кнопки: \n      Кнопка добавления метки. Если пользователь авторизовался в системе, то при нажатии открывается страница создания метки;\n      Если пользователь не зарегистрирован / не авторизован, то при нажатии открывается страница входа в систему."
+            android:textSize="16sp"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="5"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:text="Главное меню "
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="5"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:text=" Меню содержит следующие разделы:\n      Мой профиль: при нажатии осуществляется переход к странице с информацией о пользователе;\n      Мои метки: при нажатии происходит переход к экрану, содержащему список добавленных пользователем меток;\n      Настройки: при нажатии происходит переход к меню настроек приложения;\n      Выход: при нажатии осуществляется выход пользователя из аккаунта системы.\n В верхней части меню показываются никнейм и E-mail пользователя."
+            android:textSize="16sp"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="5"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:text="Регистрация и вход"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="5"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:text=" При нажатии в главном меню приложения пункта 'Вход|Регистрация' пользователь перенаправляется на страницу входа в аккаунт.\n Если пользователь хочет создать аккаунт, то нажимает кнопку 'Регистрация'.\n
+ В окне регистрации пользователю необходимо ввести все требуемые данные и нажать кнопку 'Зарегистрироваться'. При вводе данных, соответствующих шаблону, создается учетная запись и пользователь переходит к странице профиля.\n
+ Если пользователь зарегистрирован в системе, то после заполнения формы верными данными и нажатия на кнопку 'Войти' происходит авторизация пользователя, становятся доступны расширенные функции приложения. "
+            android:textSize="16sp"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="5"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:text="Создание метки"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="5"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:text=" При нажатии на кнопку добавления метки на главном экране приложения или в списке меток пользователю предоставляется возможность создать новую метку со следующими свойствами:\n      Название метки: уникальное название, придуманное пользователем;\n      Номер автомобиля: распознанный со снимка номер транспортного средства;\n      Дата добавления: автоматически появляется из данных снимка при его загрузке;\n      Местоположение метки: выбранное местоположение нарушения;\n      Снимок автомобиля: добавляется с помощью кнопок Создать фото или Выбрать из галереи;\n      Тэги: информация о нарушении в нескольких словах.\n Также пользователю предоставляется возможность отредактировать автоматически заполненное поле 'Номер автомобиля'. Дату добавления отредактировать нельзя. При нажатии кнопки 'Создать'' создается новая метка, которая появляется в списке меток пользователя и на карте в заданном местоположении."
+            android:textSize="16sp"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="5"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:text="Список меток пользователя"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="5"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:text="При выборе раздела 'Мои метки' в главном меню приложения происходит переход к экрану, содержащему список добавленных пользователем меток.\n
+На экране отображаются:
+\n    Метки с названиями и краткой информацией о них в виде списка
+\n       При нажатии на метку на экране открывается страница с подробной информацией о метке;
+\n       При длительном нажатии на метку в списке появляется всплывающее окно с возможностью удалить или отредактировать её;
+\n    Кнопка добавления метки: при нажатии открывается страница создания метки."
+            android:textSize="16sp"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="5"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:text="Фильтрация меток на карте"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="5"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:text=" При нажатии кнопки фильтрации на главном экране приложения пользователю предоставляется возможность фильтровать метки по тегу, номеру автомобиля, дате добавления, а также показывать только свои метки на карте."
+            android:textSize="16sp"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="5"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:text="Редактирование и удаление метки"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="5"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:text=" При длинном нажатии на метку в списке меток пользователя появляется окно удаления и редактирования метки.\n
+При выборе пункта 'Редактировать' пользователю предоставляется возможность редактировать информацию о метке (Название метки, Номер автомобиля, Местоположение метки, Тэги, Комментарий) и сохранять внесенные изменения нажатием на кнопку 'Сохранить'.\n
+При выборе пункта 'Удалить' и подтверждении действия метка с данными полностью удаляется из системы."
+            android:textSize="16sp"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="5"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:text="Настройки"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="5"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:text=" Авторизованному пользователю дополнительно предоставляется возможность изменить настройку Точность распознавания, отвечающую за более точное распознавание номерного знака на снимке: включено - 'ручной' режим, используя алгоритмы распознавания, выключено - используется распознавание с помощью библиотеки (настройка необходима для сбора статистики для разработчиков, по умолчанию выключено)."
+            android:textSize="16sp"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="5"/>
+
+    </LinearLayout>
+
+</ScrollView>
