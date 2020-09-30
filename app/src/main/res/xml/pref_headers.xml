@@ -1,100 +1,25 @@
-<!--<preference-headers xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--xmlns:app="http://schemas.android.com/apk/res-auto">- -->
-
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-        <SwitchPreference
-            android:defaultValue="true"
-            android:key="example_switch"
-            android:summary='Режим "ручного" распознавания (сбор статистики для разработчиков)'
-            android:title="Точность распознавания" />
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="example_switch"
+        android:summary="@string/manual_ras"
+        android:title="@string/accuracy_ras" />
 
     <PreferenceScreen
-
-        android:title="Помощь"
+        android:title="@string/help"
         android:persistent="false">
         <intent
-
-            android:targetPackage="com.example.var8"
-            android:targetClass="com.example.var8.Help"/>
+            android:targetPackage="com.example.triip"
+            android:targetClass="com.example.triip.Help"/>
     </PreferenceScreen>
     <PreferenceScreen
-
         android:key="@string/dialogs"
-
-        android:title="О приложении"
+        android:title="@string/about_app"
         android:persistent="false">
-
-
-        <!--<intent-->
-            <!---->
-        <!--android:action="android.intent.action.VIEW"-->
-        <!--android:data="CreateLabel" />-->
-
     </PreferenceScreen>
 
     </PreferenceScreen>
-    <!--<header-->
-        <!--android:fragment="com.example.artamonova_a.tppo_1.SettingsActivity$NotificationPreferenceFragment"-->
-        <!---->
-        <!--android:title="Помощь" />-->
-<!--</preference-headers>-->
-        <!--android:capitalize="words"  -->
 
-            <!--android:defaultValue="@string/pref_default_display_name"-->
-            <!--android:inputType="textCapWords"-->
-            <!--android:key="example_text"-->
-            <!--android:maxLines="1"-->
-            <!--android:selectAllOnFocus="true"-->
-            <!--android:singleLine="true"-->
-
-
-        <!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
-             dismiss it. -->
-        <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
-        <!--<EditTextPreference android:title="Помощь" />-->
-        <!--<ListPreference-->
-            <!--android:defaultValue="-1"-->
-            <!--android:entries="@array/pref_example_list_titles"-->
-            <!--android:entryValues="@array/pref_example_list_values"-->
-            <!--android:key="example_list"-->
-            <!--android:negativeButtonText="@null"-->
-            <!--android:positiveButtonText="@null"-->
-            <!--android:title="О приложении" />-->
-
-
-
-<!--<preference-headers xmlns:android="http://schemas.android.com/apk/res/android">- -->
-
-    <!--&lt;!&ndash;&lt;!&ndash; These settings headers are only used on tablets. &ndash;&gt;&ndash;&gt;-->
-
-    <!--<header-->
-        <!--android:fragment="com.example.artamonova_a.tppo_1.SettingsActivity$GeneralPreferenceFragment"-->
-        <!--android:icon="@drawable/ic_info_black_24dp"-->
-        <!--android:title="@string/pref_header_general" />-->
-    <!--<header-->
-    <!--<SwitchPreference-->
-        <!--android:defaultValue="true"-->
-        <!--android:dependency="notifications_new_message"-->
-        <!--android:key="notifications_new_message_vibrate"-->
-        <!--android:title="Точность распознавания" />-->
-    <!--/>-->
-    <!--&lt;!&ndash;<header&ndash;&gt;-->
-        <!--&lt;!&ndash;android:fragment="com.example.artamonova_a.tppo_1.SettingsActivity$NotificationPreferenceFragment"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:icon="@drawable/ic_notifications_black_24dp"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:title="@string/pref_header_notifications" />&ndash;&gt;-->
-
-    <!--<header-->
-        <!--android:fragment="com.example.artamonova_a.tppo_1.SettingsActivity$DataSyncPreferenceFragment"-->
-        <!--android:icon="@drawable/ic_sync_black_24dp"-->
-        <!--android:title="@string/pref_header_data_sync" />-->
-
-
-<!--&lt;!&ndash;<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">&ndash;&gt;-->
-
-    <!--&lt;!&ndash;&lt;!&ndash; NOTE: This preference will be enabled only when the checkbox above is checked. &ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&ndash;&gt;-->
-
-<!--&lt;!&ndash;</PreferenceScreen>&ndash;&gt;-->
-    <!--</preference-headers>-->
+<!--    android:key="@string/dialogs"-->

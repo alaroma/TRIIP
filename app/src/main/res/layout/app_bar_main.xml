@@ -12,9 +12,6 @@
         android:layout_width="match_parent"
         android:theme="@style/AppTheme.AppBarOverlay"/>
 
-
-
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -27,7 +24,6 @@
 
 
         <ImageView
-
             android:id="@+id/ic_magnfy"
             android:layout_width="22dp"
             android:layout_height="20dp"
@@ -35,9 +31,7 @@
             android:layout_marginLeft="10dp"
             android:src="@drawable/ic_magnify" />
 
-
         <EditText
-
             android:id="@+id/input_search"
             android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
             android:layout_width="275dp"
@@ -46,7 +40,7 @@
             android:layout_marginLeft="8dp"
             android:layout_toRightOf="@+id/ic_magnfy"
             android:background="@null"
-            android:hint="Поиск"
+            android:hint="@string/find"
             android:imeOptions="actionSearch"
             android:inputType="text"
             android:textColor="#000"
@@ -58,8 +52,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
@@ -68,16 +60,5 @@
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@drawable/ic_add_black_24dp"
         tools:ignore="VectorDrawableCompat" />
-
-    <!--<android.support.design.widget.FloatingActionButton-->
-    <!--android:id="@+id/floatingActionButton2"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:layout_alignTop="@id/fab"-->
-    <!--android:layout_gravity="right|center|end"-->
-    <!--android:layout_margin="@dimen/fab_margin"-->
-    <!--android:clickable="true"-->
-    <!--app:backgroundTint="@color/design_default_color_primary_dark"-->
-    <!--app:srcCompat="@drawable/ic_my_location_black_24dp" />-->
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -11,7 +11,7 @@
         android:orientation="vertical"
         android:paddingLeft="20dp"
         android:paddingRight="20dp" >
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/signup_input_layout_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,9 +24,9 @@
                 android:ems="10"
                 android:imeOptions="actionDone"
                 android:singleLine="true"
-                android:hint="Email"/>
-        </com.google.android.material.textfield.TextInputEditText>
-        <com.google.android.material.textfield.TextInputEditText
+                android:hint="@string/email"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/signup_input_layout_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -40,9 +40,9 @@
                 android:imeOptions="actionDone"
                 android:inputType="textEmailAddress"
                 android:singleLine="true"
-                android:hint="Имя" />
-        </com.google.android.material.textfield.TextInputEditText>
-        <com.google.android.material.textfield.TextInputEditText
+                android:hint="@string/names" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/signup_input_layout_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -56,9 +56,9 @@
                 android:imeOptions="actionDone"
                 android:inputType="textPassword"
                 android:singleLine="true"
-                android:hint="Пароль"/>
-        </com.google.android.material.textfield.TextInputEditText>
-        <com.google.android.material.textfield.TextInputEditText
+                android:hint="@string/passw"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/signup_input_layout_age"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -71,9 +71,8 @@
                 android:ems="10"
                 android:imeOptions="actionDone"
                 android:singleLine="true"
-                android:hint="Никнейм"/>
-            <!--android:hint="@string/hint_dob"/>-->
-        </com.google.android.material.textfield.TextInputEditText>
+                android:hint="@string/nick"/>
+        </com.google.android.material.textfield.TextInputLayout>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -84,12 +83,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
-                android:text="Пол:"/>
-            <!--android:text="@string/hint_gender"-->
-
-            <!--android:fontFeatureSettings="@string/hint_password"-->
-
-            <!--android:fontFamily="@string/hint_password"/>-->
+                android:text="@string/gender"/>
             <RadioGroup
                 android:id="@+id/gender_radio_group"
                 android:layout_width="wrap_content"
@@ -101,28 +95,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
-                    android:text="Ж"
+                    android:text="@string/female"
                     />
                 <RadioButton
                     android:id="@+id/female_radio_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="М"/>
+                    android:text="@string/male"/>
             </RadioGroup>
         </RelativeLayout>
         <Button android:id="@+id/btn_signup"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:text="Зарегистрироваться"/>
-        <!--<Button android:id="@+id/btn_link_login"-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:background="@null"-->
-        <!--android:layout_marginTop="3dp"-->
-        <!--android:textColor="@android:color/black"-->
-        <!--android:text="Зарегистрироfffffffffваться"/>-->
-        <!--android:background="@color/login_button_background"-->
-
+            android:text="@string/reg"/>
     </LinearLayout>
 </LinearLayout>

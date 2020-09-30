@@ -1,2 +1,2 @@
 include ':app', ':library'
-rootProject.name='var8'
+rootProject.name='triip'

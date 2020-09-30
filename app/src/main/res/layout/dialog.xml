@@ -1,70 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:layout="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <!--<ImageView-->
-        <!--android:layout_width="208dp"-->
-        <!--android:layout_height="122dp"-->
-        <!--android:contentDescription="@string/app_name"-->
-        <!--android:scaleType="center"-->
-        <!--android:gravity="center"-->
-        <!--android:src="@drawable/ic_action_name" />-->
-    <!--&lt;!&ndash;android:background="#FFFFBB33"&ndash;&gt;-->
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         android:layout_marginTop="20dp"
         android:gravity="center"
-        android:text="TRIP для Android" />
+        android:text="@string/trip_dialog" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:text="Версия 1.0 (сборка 1)" />
+        android:text="@string/version" />
 
 </LinearLayout>
-<!--<android.support.constraint.ConstraintLayout-->
-    <!--xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent">-->
-
-<!--</android.support.constraint.ConstraintLayout>-->
-    <!--<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:stretchColumns="*">-->
-
-        <!--<TableRow>-->
-            <!--&lt;!&ndash;<ImageView android:layout_width="wrap_content"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:src="@drawable/fortpp"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:layout_gravity="left|center"/>&ndash;&gt;-->
-
-            <!--<TextView android:id="@+id/info_text"-->
-                <!--android:gravity="center"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:layout_width="fill_parent"-->
-                <!--android:layout_height="fill_parent" />-->
-        <!--</TableRow>-->
-
-
-        <!--<TableRow>-->
-
-            <!--<TextView-->
-                <!--android:id="@+id/legal_text"-->
-                <!--android:layout_width="fill_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_margin="8dip"-->
-                <!--android:layout_span="2"-->
-                <!--android:textColor="#cccccc"-->
-                <!--android:textSize="10dip"-->
-                <!--android:textStyle="italic" />-->
-        <!--</TableRow>-->
-
-    <!--</TableLayout>-->

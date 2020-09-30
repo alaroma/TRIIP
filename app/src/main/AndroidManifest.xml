@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.var8">
+    package="com.example.triip">
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -16,9 +16,8 @@
         android:theme="@style/AppTheme"
         android:hardwareAccelerated="true">
 
-
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.triip.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             >
@@ -29,31 +28,31 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MapCreateLabel"
+        <activity android:name="com.example.triip.MapCreateLabel"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".LoginActivity"
+            android:name="com.example.triip.LoginActivity"
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Main2Activity"
+            android:name="com.example.triip.Main2Activity"
             android:label="@string/title_activity_main2"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".SettingsActivity"
+            android:name="com.example.triip.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".CreateLabel"
+            android:name="com.example.triip.CreateLabel"
             android:label="@string/create_label"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Help"
-            android:label="Помощь"
+            android:name="com.example.triip.Help"
+            android:label="@string/help"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Registr"
-            android:label="Регистрация"
+            android:name="com.example.triip.Registr"
+            android:label="@string/register"
             android:screenOrientation="portrait"/>
 
         <meta-data

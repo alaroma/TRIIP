@@ -28,7 +28,7 @@
         android:layout_marginRight="10dp"
         android:layout_toEndOf="@+id/photocar"
         android:layout_toRightOf="@+id/photocar"
-        android:text="Label Name"
+        android:text="@string/name_of_label"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
@@ -46,8 +46,9 @@
         android:layout_marginRight="34dp"
         android:layout_marginBottom="28dp"
         android:layout_toEndOf="@+id/photocar"
-        android:text="Data"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:text="@string/data_list"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_toRightOf="@+id/photocar" />
 
     <TextView
         android:id="@+id/textView_tagslabel"
@@ -64,8 +65,7 @@
         android:layout_marginEnd="34dp"
         android:layout_marginRight="34dp"
         android:layout_marginBottom="5dp"
-        android:text="Tags"
+        android:text="@string/tags"
         android:textAppearance="?android:attr/textAppearanceSmall" />
-
 
 </RelativeLayout>
