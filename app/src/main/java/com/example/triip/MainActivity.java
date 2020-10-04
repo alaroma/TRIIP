@@ -1,17 +1,18 @@
 package com.example.triip;
 
-
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+import android.content.Intent;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
@@ -28,7 +29,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -45,11 +48,34 @@ public class MainActivity extends BaseMap implements  OnMapReadyCallback, Naviga
     private EditText mSearchText;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
     private static final float DEFAULT_ZOOM = 15f;
+    private LatLng center;
+    private LatLng current;
+    private int i = 0;
 
     protected int getLayoutId(){ return R.layout.activity_main; }
     @Override
     protected void startDemo() {
         getMap().moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(61.7898036, 34.359688), 10));
+
+        final LatLng plus = new LatLng(61.794702, 34.244036);
+        final LatLng minus1 = new LatLng(61.789653, 34.352357);
+        final LatLng minus2 = new LatLng(61.788984, 34.365446);
+
+        final Location marker1 = new Location("locationB");
+        marker1.setLatitude(minus1.latitude);
+        marker1.setLongitude(minus1.longitude);
+
+        final Location marker2 = new Location("locationB");
+        marker2.setLatitude(minus2.latitude);
+        marker2.setLongitude(minus2.longitude);
+
+        final Location marker3 = new Location("locationB");
+        marker3.setLatitude(plus.latitude);
+        marker3.setLongitude(plus.longitude);
+
+        getMap().addMarker(new MarkerOptions().position(plus));
+        getMap().addMarker(new MarkerOptions().position(minus1));
+        getMap().addMarker(new MarkerOptions().position(minus2));
 
         mSearchText = (EditText) findViewById(R.id.input_search);
         enableMyLocation();
@@ -66,6 +92,84 @@ public class MainActivity extends BaseMap implements  OnMapReadyCallback, Naviga
 
             }
 
+        });
+
+        FloatingActionButton filt = (FloatingActionButton) findViewById(R.id.filt);
+        filt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getMap().setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+                    @Override
+                    public void onMapClick(LatLng latLng) {
+                        switch (i) {
+                            case 0:
+                                getMap().clear();
+                                getMap().addMarker(new MarkerOptions().position(latLng)
+                                        .alpha(3f));
+                                getMap().animateCamera(CameraUpdateFactory.newLatLng(latLng));
+                                getMap().addCircle(new CircleOptions()
+                                        .center(latLng)
+                                        .radius(1000.0)
+                                        .strokeWidth(2f)
+                                        .strokeColor(Color.RED)
+                                        .fillColor(Color.argb(70,159,50,59)));
+                                center = latLng;
+
+                                Location currentLocation = new Location("locationA");
+                                currentLocation.setLatitude(center.latitude);
+                                currentLocation.setLongitude(center.longitude);
+
+                                double distance1 = currentLocation.distanceTo(marker1);
+                                double distance2 = currentLocation.distanceTo(marker2);
+                                double distance3 = currentLocation.distanceTo(marker3);
+                                if(distance1 < 1000.0){
+                                    getMap().addMarker(new MarkerOptions().position(minus1).title(""+ distance1));
+                                }
+                                if(distance2 < 1000.0){
+                                    getMap().addMarker(new MarkerOptions().position(minus2).title(""+ distance2));
+                                }
+                                if(distance3 < 1000.0){
+                                    getMap().addMarker(new MarkerOptions().position(plus).title(""+ distance3));
+                                }
+
+                                i++;
+                                break;
+                            case 1:
+                                getMap().clear();
+                                getMap().addMarker(new MarkerOptions().position(latLng).alpha(3f));
+                                getMap().animateCamera(CameraUpdateFactory.newLatLng(latLng));
+                                getMap().addCircle(new CircleOptions()
+                                        .center(latLng)
+                                        .radius(1000.0)
+                                        .strokeWidth(2f)
+                                        .strokeColor(Color.RED)
+                                        .fillColor(Color.argb(70,159,50,59)));
+                                current = latLng;
+
+                                Location currentLocation1 = new Location("locationA");
+                                currentLocation1.setLatitude(current.latitude);
+                                currentLocation1.setLongitude(current.longitude);
+
+                                double distance01 = currentLocation1.distanceTo(marker1);
+                                double distance02 = currentLocation1.distanceTo(marker2);
+                                double distance03 = currentLocation1.distanceTo(marker3);
+
+                                if(distance01 < 1000.0){
+                                    getMap().addMarker(new MarkerOptions().position(minus1).title(""+ distance01));
+                                }
+                                if(distance02 < 1000.0){
+                                    getMap().addMarker(new MarkerOptions().position(minus2).title(""+ distance02));
+                                }
+                                if(distance03 < 1000.0){
+                                    getMap().addMarker(new MarkerOptions().position(plus).title(""+ distance03));
+                                }
+                                break;
+                        }
+                    }
+                });
+
+
+            }
         });
         createLabelonMap();
 

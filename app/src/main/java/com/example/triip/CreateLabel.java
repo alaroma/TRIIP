@@ -30,6 +30,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
+
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -56,9 +58,10 @@ public class CreateLabel extends AppCompatActivity {
     private TextView data_add_label;
     private EditText num_rasp;
     private EditText comment_field;
-    private static File destination;
+    private File destination;
     private ImageView btnMap;
     private final Handler handler = new Handler();
+    private String mCurrentPhotoPath = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,24 +92,23 @@ public class CreateLabel extends AppCompatActivity {
         btnRotate.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
-                    imageView.animate().rotationBy(90);
+                imageView.animate().rotationBy(90);
                 btnRotate.setEnabled(false);
-               handler.postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         //чтоб она была снова доступна
                         btnRotate.setEnabled(true);
                     }
                 }, 800);
-                    
+
             }
         });
 
         btnCam.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
-                checkPermission(Manifest.permission.CAMERA, 0);
-
+                checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, 0);
             }
         });
 
@@ -159,7 +161,7 @@ public class CreateLabel extends AppCompatActivity {
         btnAddLabel.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
-                 String namelab = name.getText().toString();
+                String namelab = name.getText().toString();
                 String data = data_add_label.getText().toString();
                 String tags = tags_of_lab.getText().toString();
                 Intent intObj = new Intent(CreateLabel.this, Main2Activity.class);
@@ -182,7 +184,7 @@ public class CreateLabel extends AppCompatActivity {
                 if(mp.getText().toString().length()>0&&num_rasp.getText().toString().length()>0&&name.getText().toString().length()>0&&
                         tags_of_lab.getText().toString().length()>0&&imageView.getDrawable()!=null) {
 
-                   try {
+                    try {
                         createLabel(name.getText().toString(),
                                 num_rasp.getText().toString(),
                                 tags_of_lab.getText().toString(), data,
@@ -220,7 +222,11 @@ public class CreateLabel extends AppCompatActivity {
                     break;
                 }
                 case 0: {
-                    takePicture();
+                    try {
+                        takePicture();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 }
             }
@@ -232,7 +238,11 @@ public class CreateLabel extends AppCompatActivity {
         switch (requestCode) {
             case 0: {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    takePicture();
+                    try {
+                        takePicture();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 } else {
                     Toast.makeText(CreateLabel.this, "Разрешите доступ к камере!", Toast.LENGTH_SHORT).show();
                 }
@@ -256,29 +266,49 @@ public class CreateLabel extends AppCompatActivity {
         startActivityForResult(photoPickerIntent, 1);
     }
 
-    public void takePicture() {
-        File folder = new File(Environment.getExternalStorageDirectory() + "/OpenALPR/");
-        if (!folder.exists()) {
-            folder.mkdir();
-        }
-
-        String name = dateToString(new Date(), "yyyy-MM-dd-hh-mm-ss");
-        destination = new File(folder, name + ".jpg");
+    public void takePicture() throws IOException {
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(destination));
-        startActivityForResult(cameraIntent, 0);
+        if (cameraIntent.resolveActivity(getPackageManager()) != null) {
+            //File folder = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+            File folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES + File.separator + "OpenALPR");
+
+            if (!folder.exists()) {
+                folder.mkdir();
+            }
+            String name = dateToString(new Date(), "yyyy-MM-dd-hh-mm-ss");
+            destination = new File(folder, name + ".jpg");
+            //File.createTempFile(name,".jpg", folder);
+
+            mCurrentPhotoPath = destination.getAbsolutePath();
+
+            cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(CreateLabel.this, BuildConfig.APPLICATION_ID + ".provider", destination));
+            startActivityForResult(cameraIntent, 0);
+        }
+    }
+
+    private void galleryAddPic() {
+        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        if(mCurrentPhotoPath!=null) {
+            File file = new File(mCurrentPhotoPath);
+            Uri contentUri = Uri.fromFile(file);
+            mediaScanIntent.setData(contentUri);
+            this.sendBroadcast(mediaScanIntent);
+        }
+        else {
+            Toast.makeText(CreateLabel.this, "Изображение не удалось сохранить :(", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
-
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case 0:
                     Raspoz(0, null, null);
                     showExifcam();
+                    galleryAddPic();
                     break;
 
                 case 1:
@@ -367,11 +397,11 @@ public class CreateLabel extends AppCompatActivity {
     @SuppressLint("StaticFieldLeak")
     void Raspoz(final int i, final Uri selectedImage, final String path) {
         data_add_label.setText("");
-        progress = ProgressDialog.show(this, "Подождите", "Идет распознавание...", true);
+        progress = ProgressDialog.show(CreateLabel.this, "Подождите", "Идет распознавание...", true);
         final String openAlprConfFile = ANDROID_DATA_DIR + File.separatorChar + "runtime_data" + File.separatorChar + "config"+ File.separatorChar + "openalpr.conf";
         String str = ANDROID_DATA_DIR + File.separatorChar + "runtime_data";
         final Alpr alpr = new Alpr(CreateLabel.this, this.getApplicationInfo().dataDir, "eu", openAlprConfFile, str);
-       // boolean t3 = alpr.isLoaded();
+        // boolean t3 = alpr.isLoaded();
         alpr.setDetectRegion(false);
         final ImageButton btnRotate = findViewById(R.id.btnRotate);
 
@@ -380,7 +410,7 @@ public class CreateLabel extends AppCompatActivity {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                    progress.show();
+                progress.show();
             }
 
             @Override
@@ -425,12 +455,12 @@ public class CreateLabel extends AppCompatActivity {
                         imageView.setImageURI(selectedImage);
                     }
                     btnRotate.setVisibility(View.VISIBLE);
-                  //  num_rasp.setText(result.getPlates().get(0).getBestPlate().getCharacters());
-
+                    //  num_rasp.setText(result.getPlates().get(0).getBestPlate().getCharacters());
+                    int h = result.getPlates().size();
                     //выбор номера по самой большой точности
-                    double[] conf = new double[10];
+                    double[] conf = new double[h];
                     int indexOfMax = 0;
-                    for(int i=0;i<result.getPlates().size();i++){
+                    for(int i=0;i<h;i++){
                         conf[i] = result.getPlates().get(i).getBestPlate().getOverallConfidence();
                         if (conf[i] > conf[indexOfMax])
                         {
@@ -439,7 +469,7 @@ public class CreateLabel extends AppCompatActivity {
                     }
                     num_rasp.setText(result.getPlates().get(indexOfMax).getBestPlate().getCharacters());
                     //comment_field.setText(conf[indexOfMax]+"");
-                   // result.getRegionsOfInterest().get(0).getX();
+                    // result.getRegionsOfInterest().get(0).getX();
                 }
             }
 
@@ -460,7 +490,7 @@ public class CreateLabel extends AppCompatActivity {
         postparams.put("lng", lng);
 
         JsonObjectRequest strReq = new JsonObjectRequest(Request.Method.POST,
-               URL_FOR_REGISTRATION, postparams, new Response.Listener<JSONObject>() {
+                URL_FOR_REGISTRATION, postparams, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
